@@ -1,0 +1,15 @@
+D:\Projets\BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows\BatteryAlarm.exe
+D:\Projets\BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows\BatteryAlarm.deps.json
+D:\Projets\BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows\BatteryAlarm.runtimeconfig.json
+D:\Projets\BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows\BatteryAlarm.dll
+D:\Projets\BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows\BatteryAlarm.pdb
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.AssemblyInfoInputs.cache
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.AssemblyInfo.cs
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.csproj.CoreCompileInputs.cache
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.sourcelink.json
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.dll
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\refint\BatteryAlarm.dll
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.pdb
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\BatteryAlarm.genruntimeconfig.cache
+D:\Projets\BatteryAlarm\BatteryAlarm\obj\Debug\net9.0-windows\ref\BatteryAlarm.dll
