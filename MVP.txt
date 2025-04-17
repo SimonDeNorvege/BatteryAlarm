@@ -1,3 +1,4 @@
 MVP :   1.0 : Faire des sons qui se jouent quand la batterie se décharge a certains pourcentages
         2.0 : Faire une application avec pas de bordure, fenetre transparente, présente dans les icones cachés,
-        
+
+1.0 Fait!
