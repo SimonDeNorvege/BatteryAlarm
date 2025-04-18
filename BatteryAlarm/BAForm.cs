@@ -2,10 +2,12 @@ using System;
 using System.Windows.Forms;
 using System.Media;
 
+
 namespace BatteryAlarm
 {
     public partial class BatteryAlarm : Form
     {
+        
         private const int BATTERY_FIFTY = 50;
         private const int BATTERY_FOURTY = 40;
         private const int BATTERY_THIRTY = 30;
@@ -18,10 +20,11 @@ namespace BatteryAlarm
         private const int BATTERY_MID = 50;
         private const int BATTERY_FULL = 90;
 
+        private NotifyIcon notifyIcon = null!;
+        private ContextMenuStrip contextMenu = null!;
         private Label percentLabel = null!;
         private Label statusLabel = null!;
         private List<SoundPlayer> sounds = null!;
-
         public BatteryAlarm()
         {
             InitializeComponent();
@@ -32,7 +35,54 @@ namespace BatteryAlarm
             //Première Instanciation de UpdateBattery 
             UpdateBatteryInfo();
             TimerUpdate();
+            InitializeTrayIcon();
+            
         }
+
+        private void InitializeTrayIcon()
+        {
+            notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = SystemIcons.Information; // Remplace par une vraie icône si tu veux
+            notifyIcon.Text = "Battery Alarm";
+            notifyIcon.Visible = true;
+
+            contextMenu = new ContextMenuStrip();
+            contextMenu.Items.Add("Afficher", null, (s, e) => ShowWindow());
+            contextMenu.Items.Add("Quitter", null, (s, e) => Application.Exit());
+
+            notifyIcon.ContextMenuStrip = contextMenu;
+
+            notifyIcon.DoubleClick += (s, e) => ShowWindow();
+        }
+
+        private void OnResize(object? sender, EventArgs e)
+        {
+        if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+            }
+        }
+
+        private void OnFormClosing(object? sender, FormClosingEventArgs e)
+        {
+            // Si l'utilisateur clique sur la croix (Alt+F4 ou bouton X)
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+                this.Hide(); // On cache la fenêtre
+            }
+        }
+
+
+
+        private void ShowWindow()
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            this.BringToFront();
+        }
+
+
 
         void InitializeSounds()
         {
@@ -67,6 +117,8 @@ namespace BatteryAlarm
 
         private void ConfigureForm()
         {
+            this.FormClosing += OnFormClosing;
+            this.Resize += OnResize;
             this.Text = "BatteryAlarm";
             this.Width = 300;
             this.Height = 200;
