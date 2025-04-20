@@ -2,6 +2,9 @@ namespace BatteryAlarm
 {
     public partial class BatteryAlarm
     {
+        /// <summary>
+        ///  Initialize the labels for BatteryAlarm
+        /// </summary>
         private void InitializeLabels()
         {
             percentLabel = new Label()
@@ -19,6 +22,9 @@ namespace BatteryAlarm
             this.Controls.Add(statusLabel);
         }
 
+        /// <summary>
+        /// Configure the form displayed
+        /// </summary>
         private void ConfigureForm()
         {
             this.FormClosing += OnFormClosing;
@@ -28,6 +34,9 @@ namespace BatteryAlarm
             this.Height = 200;
         }
 
+        /// <summary>
+        /// Intialize the Tray
+        /// </summary>
         private void InitializeTrayIcon()
         {
             notifyIcon = new NotifyIcon
@@ -45,6 +54,11 @@ namespace BatteryAlarm
             notifyIcon.DoubleClick += (s, e) => ShowWindow();
         }
 
+        /// <summary>
+        /// Resize the window 
+        /// </summary>
+        /// <param name="sender"> "this" </param>
+        /// <param name="e"> </param>
         private void OnResize(object? sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Minimized)
@@ -53,6 +67,11 @@ namespace BatteryAlarm
             }
         }
 
+        /// <summary>
+        /// Ignore la fin de l'application et la cache dans les icones cachés
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnFormClosing(object? sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing)
@@ -62,6 +81,9 @@ namespace BatteryAlarm
             }
         }
 
+        /// <summary>
+        /// Quand la fenêtre est cachée, permet de la reafficher
+        /// </summary>
         private void ShowWindow()
         {
             this.Show();
