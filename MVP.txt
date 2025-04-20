@@ -1,4 +1,9 @@
 MVP :   1.0 : Faire des sons qui se jouent quand la batterie se décharge a certains pourcentages
-        2.0 : Faire une application avec pas de bordure, fenetre transparente, présente dans les icones cachés,
+        1.5 : Faire une application avec pas de bordure, fenetre transparente?, présente dans les icones cachés
+        1.6 : démarrage au lancment de windows
+        1.7 : changer l'icone / Commentaires
+        1.8 : laisser le choix des sons d'alerte
+        1.9 : regarder si on peut convertir en format waw
 
-1.0 Fait!
+        IMA : 1.6
+
