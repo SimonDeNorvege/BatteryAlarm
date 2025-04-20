@@ -7,6 +7,9 @@ namespace BatteryAlarm
     {
         private List<SoundPlayer> sounds = null!;
 
+        /// <summary>
+        /// Initialise la liste sounds qui contient les sons
+        /// </summary>
         public void InitializeSounds()
         {
             this.sounds = new List<SoundPlayer>
@@ -20,6 +23,11 @@ namespace BatteryAlarm
             };
         }
 
+        /// <summary>
+        /// Permet de récupérer le son pour le niveau de batterie correspondant
+        /// </summary>
+        /// <param name="batteryLevel"></param>
+        /// <returns>Une string à afficher</returns>
         private string GetBatteryStatusSound(float batteryLevel)
         {
             if (batteryLevel == BATTERY_FIFTY)
@@ -34,10 +42,13 @@ namespace BatteryAlarm
                 PlaySound(sounds[(int)SoundLevel.Ten]);
             else if (batteryLevel == BATTERY_FIVE)
                 PlaySound(sounds[(int)SoundLevel.Five]);
-
-            return $"Battery over {BATTERY_FULL}% ({batteryLevel:0}%)";
+            return $"Battery : {batteryLevel}%";
         }
 
+        /// <summary>
+        /// Lit un son
+        /// </summary>
+        /// <param name="sound">Son à lire</param>
         public void PlaySound(SoundPlayer sound)
         {
             try
