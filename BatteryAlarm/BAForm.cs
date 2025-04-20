@@ -22,6 +22,9 @@ namespace BatteryAlarm
         private Label percentLabel = null!;
         private Label statusLabel = null!;
 
+        /// <summary>
+        /// Constructeur de BatteryAlarm
+        /// </summary>
         public BatteryAlarm()
         {
             InitializeComponent();
@@ -30,7 +33,7 @@ namespace BatteryAlarm
             InitializeSounds();
             InitializeTrayIcon();
 
-            // Joue un son au démarrage (optionnel)
+            // Joue un son au démarrage
             try
             {
                 PlaySound(new SoundPlayer("sounds/loading.wav"));
@@ -47,6 +50,9 @@ namespace BatteryAlarm
             TimerUpdate();
         }
 
+        /// <summary>
+        /// Gère l'événement autour du timer
+        /// </summary>
         private void TimerUpdate()
         {
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer
@@ -63,6 +69,12 @@ namespace BatteryAlarm
             timer.Start();
         }
 
+        /// <summary>
+        /// Permet de lancer l'application au démarrage de windows
+        /// </summary>
+        /// <param name="enable"></param>
+        /// <param name="appName"></param>
+        /// <param name="exePath"></param>
         public static void SetAutoStart(bool enable, string appName, string exePath)
         {
            using (RegistryKey? rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
@@ -82,6 +94,9 @@ namespace BatteryAlarm
 
         }
 
+        /// <summary>
+        /// Gère les labels qui gèrent l'affichage
+        /// </summary>
         private void UpdateBatteryInfo()
         {
             PowerStatus status = SystemInformation.PowerStatus;
