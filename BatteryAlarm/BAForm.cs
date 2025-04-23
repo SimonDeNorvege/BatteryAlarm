@@ -15,7 +15,6 @@ namespace BatteryAlarm
         private const int BATTERY_TWENTY = 20;
         private const int BATTERY_TEN = 10;
         private const int BATTERY_FIVE = 5;
-        private const int BATTERY_FULL = 90;
 
         private NotifyIcon notifyIcon = null!;
         private ContextMenuStrip contextMenu = null!;
