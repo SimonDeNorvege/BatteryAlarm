@@ -33,17 +33,17 @@ namespace BatteryAlarm
         /// <returns>Une string à afficher</returns>
         private string GetBatteryStatusSound(float batteryLevel)
         {
-            if ((BatteryFifty - batteryLevel < 10) || (batteryLevel - BatteryFifty < 10))
+            if ((batteryLevel - BatteryFifty < 10) && (BatteryFifty - batteryLevel < 10))
                 PlaySound(_sounds[(int)SoundLevel.Fifty]);
-            else if ((batteryLevel - BatteryForty < 10) || (BatteryForty - batteryLevel < 10))
+            else if ((batteryLevel - BatteryForty < 10) && (BatteryForty - batteryLevel < 10))
                 PlaySound(_sounds[(int)SoundLevel.Fourty]);
-            else if ((batteryLevel - BatteryThirty < 10) || (BatteryThirty - batteryLevel < 10))
+            else if ((batteryLevel - BatteryThirty < 10) && (BatteryThirty - batteryLevel < 10))
                 PlaySound(_sounds[(int)SoundLevel.Thirty]);
-            else if ((batteryLevel - BatteryTwenty < 10) || (BatteryTwenty - batteryLevel < 10))
+            else if ((batteryLevel - BatteryTwenty < 10) && (BatteryTwenty - batteryLevel < 10))
                 PlaySound(_sounds[(int)SoundLevel.Twenty]);
-            else if ((batteryLevel - BatteryTen < 10) || (BatteryTen - batteryLevel < 10))
+            else if ((batteryLevel - BatteryTen < 10) && (BatteryTen - batteryLevel < 10))
                 PlaySound(_sounds[(int)SoundLevel.Ten]);
-            else if ((batteryLevel - BatteryFive < 10) || (BatteryFive - batteryLevel < 10))
+            else if ((batteryLevel - BatteryFive < 10) && (BatteryFive - batteryLevel < 10))
                 PlaySound(_sounds[(int)SoundLevel.Five]);
             return $"Battery : {batteryLevel}%";
         }
