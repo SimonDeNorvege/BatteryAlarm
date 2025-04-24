@@ -1,26 +1,29 @@
-using System.Collections.Generic;
 using System.Media;
 
 namespace BatteryAlarm
 {
     public partial class BatteryAlarm
     {
-        private List<SoundPlayer> sounds = null!;
+        private const string _soundsPath = "../../../"; 
+        private List<SoundPlayer> _sounds = null!;
 
         /// <summary>
         /// Initialise la liste sounds qui contient les sons
         /// </summary>
         public void InitializeSounds()
         {
-            this.sounds = new List<SoundPlayer>
+
+            this._sounds = new List<SoundPlayer>
             {
-                new SoundPlayer("sounds/fifty.wav"),
-                new SoundPlayer("sounds/fourty.wav"),
-                new SoundPlayer("sounds/thirty.wav"),
-                new SoundPlayer("sounds/twenty.wav"),
-                new SoundPlayer("sounds/ten.wav"),
-                new SoundPlayer("sounds/five.wav")
+                new SoundPlayer(_soundsPath + "Sounds/fifty.wav"),
+                new SoundPlayer(_soundsPath + "Sounds/fourty.wav"),
+                new SoundPlayer(_soundsPath + "Sounds/thirty.wav"),
+                new SoundPlayer(_soundsPath + "Sounds/twenty.wav"),
+                new SoundPlayer(_soundsPath + "Sounds/ten.wav"),
+                new SoundPlayer(_soundsPath + "Sounds/five.wav")
             };
+
+            Console.WriteLine(_sounds.Count);
         }
 
         /// <summary>
@@ -30,18 +33,18 @@ namespace BatteryAlarm
         /// <returns>Une string à afficher</returns>
         private string GetBatteryStatusSound(float batteryLevel)
         {
-            if (batteryLevel == BATTERY_FIFTY)
-                PlaySound(sounds[(int)SoundLevel.Fifty]);
-            else if (batteryLevel == BATTERY_FOURTY)
-                PlaySound(sounds[(int)SoundLevel.Fourty]);
-            else if (batteryLevel == BATTERY_THIRTY)
-                PlaySound(sounds[(int)SoundLevel.Thirty]);
-            else if (batteryLevel == BATTERY_TWENTY)
-                PlaySound(sounds[(int)SoundLevel.Twenty]);
-            else if (batteryLevel == BATTERY_TEN)
-                PlaySound(sounds[(int)SoundLevel.Ten]);
-            else if (batteryLevel == BATTERY_FIVE)
-                PlaySound(sounds[(int)SoundLevel.Five]);
+            if ((BatteryFifty - batteryLevel < 10) || (batteryLevel - BatteryFifty < 10))
+                PlaySound(_sounds[(int)SoundLevel.Fifty]);
+            else if ((batteryLevel - BatteryForty < 10) || (BatteryForty - batteryLevel < 10))
+                PlaySound(_sounds[(int)SoundLevel.Fourty]);
+            else if ((batteryLevel - BatteryThirty < 10) || (BatteryThirty - batteryLevel < 10))
+                PlaySound(_sounds[(int)SoundLevel.Thirty]);
+            else if ((batteryLevel - BatteryTwenty < 10) || (BatteryTwenty - batteryLevel < 10))
+                PlaySound(_sounds[(int)SoundLevel.Twenty]);
+            else if ((batteryLevel - BatteryTen < 10) || (BatteryTen - batteryLevel < 10))
+                PlaySound(_sounds[(int)SoundLevel.Ten]);
+            else if ((batteryLevel - BatteryFive < 10) || (BatteryFive - batteryLevel < 10))
+                PlaySound(_sounds[(int)SoundLevel.Five]);
             return $"Battery : {batteryLevel}%";
         }
 
@@ -58,7 +61,7 @@ namespace BatteryAlarm
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Erreur lors du chargement du son : {ex.Message}");
+                Console.Error.WriteLine($"Erreur lors du chargement de {sound.SoundLocation} : {ex.Message} ");
             }
         }
         

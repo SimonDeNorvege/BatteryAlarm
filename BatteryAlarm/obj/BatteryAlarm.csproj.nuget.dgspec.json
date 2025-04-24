@@ -13,6 +13,7 @@
         "packagesPath": "C:\\Users\\pierr\\.nuget\\packages\\",
         "outputPath": "D:\\Projets\\BatteryAlarm\\BatteryAlarm\\obj\\",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "C:\\Users\\pierr\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
@@ -37,8 +38,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.200"
+        }
       },
       "frameworks": {
         "net9.0-windows7.0": {

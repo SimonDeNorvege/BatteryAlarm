@@ -1,25 +1,24 @@
-using System;
-using System.Windows.Forms;
 using System.Media;
 using Microsoft.Win32;
-using System.Collections.Generic;
 
 namespace BatteryAlarm
 {
     public partial class BatteryAlarm : Form
     {
 
-        private const int BATTERY_FIFTY = 50;
-        private const int BATTERY_FOURTY = 40;
-        private const int BATTERY_THIRTY = 30;
-        private const int BATTERY_TWENTY = 20;
-        private const int BATTERY_TEN = 10;
-        private const int BATTERY_FIVE = 5;
+        private const int BatteryFifty = 50;
+        private const int BatteryForty = 40;
+        private const int BatteryThirty = 30;
+        private const int BatteryTwenty = 20;
+        private const int BatteryTen = 10;
+        private const int BatteryFive = 5;
 
-        private NotifyIcon notifyIcon = null!;
-        private ContextMenuStrip contextMenu = null!;
-        private Label percentLabel = null!;
-        private Label statusLabel = null!;
+        private NotifyIcon _notifyIcon = null!;
+        private ContextMenuStrip _contextMenu = null!;
+        private Label _percentLabel = null!;
+        private Label _statusLabel = null!;
+
+       
 
         /// <summary>
         /// Constructeur de BatteryAlarm
@@ -31,22 +30,26 @@ namespace BatteryAlarm
             InitializeLabels();
             InitializeSounds();
             InitializeTrayIcon();
+            
+            debug_fct();
 
             // Joue un son au démarrage
-            try
-            {
-                PlaySound(new SoundPlayer("sounds/loading.wav"));
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"Erreur son démarrage : {ex.Message}");
-            }
+            PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../Sounds/loading.wav")));
 
             SetAutoStart(true, "BatteryAlarm", Application.ExecutablePath);
 
             // Mise à jour initiale
             UpdateBatteryInfo();
             TimerUpdate();
+        }
+
+        void debug_fct()
+        {
+            string currentDirectory = Environment.CurrentDirectory;
+            
+            Console.WriteLine("DEBUG FCT");
+            Console.WriteLine(currentDirectory);
+            Console.WriteLine(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
 
         /// <summary>
@@ -59,7 +62,7 @@ namespace BatteryAlarm
                 Interval = 500
             };
 
-            timer.Tick += (s, e) =>
+            timer.Tick += (_, _) =>
             {
                 UpdateBatteryInfo();
                 timer.Stop();
@@ -102,17 +105,17 @@ namespace BatteryAlarm
             float batteryLevel = status.BatteryLifePercent * 100;
             string powerLine = status.PowerLineStatus.ToString();
 
-            statusLabel.Text = powerLine == "Online"
+            _statusLabel.Text = powerLine == "Online"
                 ? "En charge ⚡"
                 : "Sur batterie 🔋";
 
             if (powerLine != "Online")
             {
-                percentLabel.Text = GetBatteryStatusSound(batteryLevel);
+                _percentLabel.Text = GetBatteryStatusSound(batteryLevel);
             }
             else
             {
-                percentLabel.Text = $"Battery at {batteryLevel:0}%";
+                _percentLabel.Text = $"Battery at {batteryLevel:0}%";
             }
         }
     }

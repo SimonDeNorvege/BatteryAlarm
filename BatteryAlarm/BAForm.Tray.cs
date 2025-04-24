@@ -7,19 +7,19 @@ namespace BatteryAlarm
         /// </summary>
         private void InitializeLabels()
         {
-            percentLabel = new Label()
+            _percentLabel = new Label()
             {
                 Location = new System.Drawing.Point(50, 50),
                 AutoSize = true
             };
-            this.Controls.Add(percentLabel);
+            this.Controls.Add(_percentLabel);
 
-            statusLabel = new Label()
+            _statusLabel = new Label()
             {
                 Location = new System.Drawing.Point(50, 30),
                 AutoSize = true
             };
-            this.Controls.Add(statusLabel);
+            this.Controls.Add(_statusLabel);
         }
 
         /// <summary>
@@ -39,19 +39,19 @@ namespace BatteryAlarm
         /// </summary>
         private void InitializeTrayIcon()
         {
-            notifyIcon = new NotifyIcon
+            _notifyIcon = new NotifyIcon
             {
                 Icon = SystemIcons.Warning,
                 Text = "Battery Alarm",
                 Visible = true
             };
 
-            contextMenu = new ContextMenuStrip();
-            contextMenu.Items.Add("Afficher", null, (s, e) => ShowWindow());
-            contextMenu.Items.Add("Quitter", null, (s, e) => Application.Exit());
+            _contextMenu = new ContextMenuStrip();
+            _contextMenu.Items.Add("Afficher", null, (s, e) => ShowWindow());
+            _contextMenu.Items.Add("Quitter", null, (s, e) => Application.Exit());
 
-            notifyIcon.ContextMenuStrip = contextMenu;
-            notifyIcon.DoubleClick += (s, e) => ShowWindow();
+            _notifyIcon.ContextMenuStrip = _contextMenu;
+            _notifyIcon.DoubleClick += (s, e) => ShowWindow();
         }
 
         /// <summary>
