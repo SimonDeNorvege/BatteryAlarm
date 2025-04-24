@@ -19,4 +19,4 @@
 
 1. Clonez ce projet sur votre machine locale :
    ```bash
-   git clone https://github.com/votre-utilisateur/BatteryAlarm.git
+   git clone https://github.com/SimonDeNorvege/BatteryAlarm.git
