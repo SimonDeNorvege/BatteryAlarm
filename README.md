@@ -7,6 +7,7 @@
 - Surveille en temps réel le niveau de la batterie.
 - Joue un son d'alerte lorsque la batterie atteint un seuil spécifique.
 - Alertes visuelles et sonores pour avertir de la faible charge de la batterie.
+- Lancement au démarrage de Windows
 
 ## Installation
 
@@ -20,3 +21,7 @@
 1. Clonez ce projet sur votre machine locale :
    ```bash
    git clone https://github.com/SimonDeNorvege/BatteryAlarm.git
+2. Lancez le .exe présent dans
+   ```bash 
+   BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows
+3. L'application se lancera automatiquement au prochain démarrage de windows
