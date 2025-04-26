@@ -21,7 +21,3 @@
 1. Clonez ce projet sur votre machine locale :
    ```bash
    git clone https://github.com/SimonDeNorvege/BatteryAlarm.git
-2. Lancez le .exe présent dans
-   ```bash 
-   BatteryAlarm\BatteryAlarm\bin\Debug\net9.0-windows
-3. L'application se lancera automatiquement au prochain démarrage de windows
