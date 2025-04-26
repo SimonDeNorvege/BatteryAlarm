@@ -18,6 +18,8 @@ namespace BatteryAlarm
         private Label _percentLabel = null!;
         private Label _statusLabel = null!;
 
+        private System.Windows.Forms.Timer _timer = null!;
+
        
 
         /// <summary>
@@ -30,8 +32,6 @@ namespace BatteryAlarm
             InitializeLabels();
             InitializeSounds();
             InitializeTrayIcon();
-            
-            debug_fct();
 
             // Joue un son au démarrage
             PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../Sounds/loading.wav")));
@@ -42,33 +42,24 @@ namespace BatteryAlarm
             UpdateBatteryInfo();
             TimerUpdate();
         }
-
-        void debug_fct()
-        {
-            string currentDirectory = Environment.CurrentDirectory;
-            
-            Console.WriteLine("DEBUG FCT");
-            Console.WriteLine(currentDirectory);
-            Console.WriteLine(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        }
-
+        
         /// <summary>
-        /// Gère l'événement autour du timer
+        /// Gère l'événement autour du timer avec la remise à zéro pour la remise en marche du son
         /// </summary>
         private void TimerUpdate()
         {
-            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer
+            _timer = new System.Windows.Forms.Timer
             {
                 Interval = 500
             };
 
-            timer.Tick += (_, _) =>
+            _timer.Tick += (_, _) =>
             {
                 UpdateBatteryInfo();
-                timer.Stop();
-                timer.Start();
+                _timer.Stop();
+                _timer.Start();
             };
-            timer.Start();
+            _timer.Start();
         }
 
         /// <summary>
@@ -77,7 +68,7 @@ namespace BatteryAlarm
         /// <param name="enable"></param>
         /// <param name="appName"></param>
         /// <param name="exePath"></param>
-        public static void SetAutoStart(bool enable, string appName, string exePath)
+        private static void SetAutoStart(bool enable, string appName, string exePath)
         {
            using (RegistryKey? rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true))
             {

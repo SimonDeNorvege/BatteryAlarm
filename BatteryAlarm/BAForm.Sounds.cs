@@ -4,7 +4,7 @@ namespace BatteryAlarm
 {
     public partial class BatteryAlarm
     {
-        private const string _soundsPath = "../../../"; 
+        private const string SoundsPath = "../../../Sounds/"; 
         private List<SoundPlayer> _sounds = null!;
 
         /// <summary>
@@ -15,12 +15,12 @@ namespace BatteryAlarm
 
             this._sounds = new List<SoundPlayer>
             {
-                new SoundPlayer(_soundsPath + "Sounds/fifty.wav"),
-                new SoundPlayer(_soundsPath + "Sounds/fourty.wav"),
-                new SoundPlayer(_soundsPath + "Sounds/thirty.wav"),
-                new SoundPlayer(_soundsPath + "Sounds/twenty.wav"),
-                new SoundPlayer(_soundsPath + "Sounds/ten.wav"),
-                new SoundPlayer(_soundsPath + "Sounds/five.wav")
+                new SoundPlayer(SoundsPath + "fifty.wav"),
+                new SoundPlayer(SoundsPath + "fourty.wav"),
+                new SoundPlayer(SoundsPath + "thirty.wav"),
+                new SoundPlayer(SoundsPath + "twenty.wav"),
+                new SoundPlayer(SoundsPath + "ten.wav"),
+                new SoundPlayer(SoundsPath + "five.wav")
             };
 
             Console.WriteLine(_sounds.Count);
