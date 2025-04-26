@@ -17,7 +17,6 @@ namespace BatteryAlarm
         private ContextMenuStrip _contextMenu = null!;
         private Label _percentLabel = null!;
         private Label _statusLabel = null!;
-
         private System.Windows.Forms.Timer _timer = null!;
 
        
@@ -34,7 +33,7 @@ namespace BatteryAlarm
             InitializeTrayIcon();
 
             // Joue un son au démarrage
-            PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "../../../Sounds/loading.wav")));
+            PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SoundsPath + "loading.wav")));
 
             SetAutoStart(true, "BatteryAlarm", Application.ExecutablePath);
 
@@ -95,19 +94,16 @@ namespace BatteryAlarm
             PowerStatus status = SystemInformation.PowerStatus;
             float batteryLevel = status.BatteryLifePercent * 100;
             string powerLine = status.PowerLineStatus.ToString();
-
-            _statusLabel.Text = powerLine == "Online"
-                ? "En charge ⚡"
-                : "Sur batterie 🔋";
-
-            if (powerLine != "Online")
-            {
-                _percentLabel.Text = GetBatteryStatusSound(batteryLevel);
-            }
+            
+            if (powerLine == "Online")
+                _statusLabel.Text = "En Charge";
             else
-            {
-                _percentLabel.Text = $"Battery at {batteryLevel:0}%";
-            }
+                _statusLabel.Text = "Sur Batterie";
+            
+            if (powerLine == "Online")
+                _statusLabel.Text = "En charge ⚡";
+            else
+                _statusLabel.Text = "Sur batterie 🔋";
         }
     }
 }
