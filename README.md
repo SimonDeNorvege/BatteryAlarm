@@ -14,7 +14,7 @@
 ### Prérequis
 
 - **.NET Framework 4.7** ou supérieur.
-- Application en C# développée avec **Rider**.
+- Application en C#
 
 ### Étapes d'installation
 
