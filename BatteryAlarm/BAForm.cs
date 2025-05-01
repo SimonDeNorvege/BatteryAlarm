@@ -8,7 +8,7 @@ namespace BatteryAlarm
     {
 
         private const int BatteryFifty = 50;
-        private const int BatteryForty = 40;
+        private const int BatteryFourty = 40;
         private const int BatteryThirty = 30;
         private const int BatteryTwenty = 20;
         private const int BatteryTen = 10;
@@ -36,12 +36,6 @@ namespace BatteryAlarm
             InitializeLabels();
             InitializeTrayIcon();
 
-            //Debug_fct()
-
-            Debug_fct();
-
-
-            //
 
             // Joue un son au démarrage
             //PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SoundsPath + "loading.wav")));
@@ -55,14 +49,7 @@ namespace BatteryAlarm
             TimerUpdate();
         }
 
-        ///Debug_fct
-        /// Gère le debug, a supprimer
-
-        public void Debug_fct()
-        {
-            //marche
-            PlaySound(SoundsPaths[(int)SoundLevel.Fifty]);
-        }
+        
 
         /// <summary>
         /// Gère l'événement autour du timer avec la remise à zéro pour la remise en marche du son

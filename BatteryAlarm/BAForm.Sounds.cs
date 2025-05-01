@@ -28,17 +28,17 @@ namespace BatteryAlarm
             int remainingBattery = (int)Math.Round(Math.Clamp(0, batteryLevel, 100));
             string toPlay;
 
-            if ((remainingBattery - BatteryFifty < 10) && (BatteryFifty - remainingBattery < 10))
+            if (Math.Abs(remainingBattery - BatteryFifty) < 5)
                 toPlay = SoundsPaths[(int)SoundLevel.Fifty];
-            else if ((remainingBattery - BatteryForty < 10) && (BatteryForty - remainingBattery < 10))
+            else if (Math.Abs(remainingBattery - BatteryFourty) < 5)
                 toPlay = SoundsPaths[(int)SoundLevel.Fourty];
-            else if ((remainingBattery - BatteryThirty < 10) && (BatteryThirty - remainingBattery < 10))
+            else if (Math.Abs(remainingBattery - BatteryThirty) < 5)
                 toPlay = SoundsPaths[(int)SoundLevel.Thirty];
-            else if ((remainingBattery - BatteryTwenty < 10) && (BatteryTwenty - remainingBattery < 10))
+            else if (Math.Abs(remainingBattery - BatteryTwenty) < 5)
                 toPlay = SoundsPaths[(int)SoundLevel.Twenty];
-            else if ((remainingBattery - BatteryTen < 10) && (BatteryTen - remainingBattery < 10))
+            else if (Math.Abs(remainingBattery - BatteryTen) < 5)
                 toPlay = SoundsPaths[(int)SoundLevel.Ten];
-            else if ((remainingBattery - BatteryFive < 10) && (BatteryFive - remainingBattery < 10))
+            else if (Math.Abs(remainingBattery - BatteryFive) < 5)
                 toPlay = SoundsPaths[(int)SoundLevel.Five];
             else
                 toPlay = "No Sound";
