@@ -4,6 +4,7 @@ MVP :   1.0 : Faire des sons qui se jouent quand la batterie se décharge a cert
         1.7 : changer l'icone / Commentaires
 	1.8 : Regler les problèmes de lancement du son
 	1.82 : Ajouter un ReadMe
+	1.83 : Nettoyer le dossier
         1.85 : laisser le choix des sons d'alerte
         1.9 : regarder si on peut convertir en format waw
 
