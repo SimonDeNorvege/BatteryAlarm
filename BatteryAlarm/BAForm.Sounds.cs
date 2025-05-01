@@ -4,8 +4,7 @@ namespace BatteryAlarm
 {
     public partial class BatteryAlarm
     {
-        private const string SoundsPath = "../../../Sounds/"; //Path mauvais
-        //pas utiliser le point d'exclamation mettre dans le constructeur mettre static ABUS DE LANGAGE
+        private const string SoundsPath = "../../../Resources/Sounds/"; //Path mauvais
         
         private static readonly List<string> SoundsPaths = new List<string>()
         {
