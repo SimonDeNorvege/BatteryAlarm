@@ -4,65 +4,65 @@ namespace BatteryAlarm
 {
     public partial class BatteryAlarm
     {
-        private const string SoundsPath = "../../../Sounds/"; 
-        private List<SoundPlayer> _sounds = null!;
-
-        /// <summary>
-        /// Initialise la liste sounds qui contient les sons
-        /// </summary>
-        public void InitializeSounds()
+        private const string SoundsPath = "../../../Sounds/"; //Path mauvais
+        //pas utiliser le point d'exclamation mettre dans le constructeur mettre static ABUS DE LANGAGE
+        
+        private static readonly List<string> SoundsPaths = new List<string>()
         {
-
-            this._sounds = new List<SoundPlayer>
-            {
-                new SoundPlayer(SoundsPath + "fifty.wav"),
-                new SoundPlayer(SoundsPath + "fourty.wav"),
-                new SoundPlayer(SoundsPath + "thirty.wav"),
-                new SoundPlayer(SoundsPath + "twenty.wav"),
-                new SoundPlayer(SoundsPath + "ten.wav"),
-                new SoundPlayer(SoundsPath + "five.wav")
-            };
-
-            Console.WriteLine(_sounds.Count);
-        }
+            new string(SoundsPath + "fifty.wav"),
+            new string(SoundsPath + "fourty.wav"),
+            new string(SoundsPath + "thirty.wav"),
+            new string(SoundsPath + "twenty.wav"),
+            new string(SoundsPath + "ten.wav"),
+            new string(SoundsPath + "five.wav"),
+        };
+        
+        private readonly SoundPlayer _soundPlayer = new SoundPlayer();
 
         /// <summary>
         /// Permet de récupérer le son pour le niveau de batterie correspondant
         /// </summary>
         /// <param name="batteryLevel"></param>
         /// <returns>Une string à afficher</returns>
-        private string GetBatteryStatusSound(float batteryLevel)
+        private string GetBatteryStatusSound(float batteryLevel) // mauvais d'abord faire le int index et 
         {
-            if ((batteryLevel - BatteryFifty < 10) && (BatteryFifty - batteryLevel < 10))
-                PlaySound(_sounds[(int)SoundLevel.Fifty]);
-            else if ((batteryLevel - BatteryForty < 10) && (BatteryForty - batteryLevel < 10))
-                PlaySound(_sounds[(int)SoundLevel.Fourty]);
-            else if ((batteryLevel - BatteryThirty < 10) && (BatteryThirty - batteryLevel < 10))
-                PlaySound(_sounds[(int)SoundLevel.Thirty]);
-            else if ((batteryLevel - BatteryTwenty < 10) && (BatteryTwenty - batteryLevel < 10))
-                PlaySound(_sounds[(int)SoundLevel.Twenty]);
-            else if ((batteryLevel - BatteryTen < 10) && (BatteryTen - batteryLevel < 10))
-                PlaySound(_sounds[(int)SoundLevel.Ten]);
-            else if ((batteryLevel - BatteryFive < 10) && (BatteryFive - batteryLevel < 10))
-                PlaySound(_sounds[(int)SoundLevel.Five]);
+            int remainingBattery = (int)Math.Round(Math.Clamp(0, batteryLevel, 100));
+            string toPlay;
+
+            if ((remainingBattery - BatteryFifty < 10) && (BatteryFifty - remainingBattery < 10))
+                toPlay = SoundsPaths[(int)SoundLevel.Fifty];
+            else if ((remainingBattery - BatteryForty < 10) && (BatteryForty - remainingBattery < 10))
+                toPlay = SoundsPaths[(int)SoundLevel.Fourty];
+            else if ((remainingBattery - BatteryThirty < 10) && (BatteryThirty - remainingBattery < 10))
+                toPlay = SoundsPaths[(int)SoundLevel.Thirty];
+            else if ((remainingBattery - BatteryTwenty < 10) && (BatteryTwenty - remainingBattery < 10))
+                toPlay = SoundsPaths[(int)SoundLevel.Twenty];
+            else if ((remainingBattery - BatteryTen < 10) && (BatteryTen - remainingBattery < 10))
+                toPlay = SoundsPaths[(int)SoundLevel.Ten];
+            else if ((remainingBattery - BatteryFive < 10) && (BatteryFive - remainingBattery < 10))
+                toPlay = SoundsPaths[(int)SoundLevel.Five];
+            else
+                toPlay = "No Sound";
+            
+            if (toPlay != "No Sound")
+                PlaySound(toPlay);
+            
+            
             return $"Battery : {batteryLevel}%";
+            
+            
+            
         }
 
         /// <summary>
         /// Lit un son
         /// </summary>
         /// <param name="sound">Son à lire</param>
-        public void PlaySound(SoundPlayer sound)
+        public void PlaySound(string sound)
         {
-            try
-            {
-                sound.Load(); // Peut lever une exception si le fichier est manquant
-                sound.Play();
-            }
-            catch (Exception ex)
-            {
-                Console.Error.WriteLine($"Erreur lors du chargement de {sound.SoundLocation} : {ex.Message} ");
-            }
+                _soundPlayer.SoundLocation = sound;
+                _soundPlayer.Load(); // Peut lever une exception si le fichier est manquant
+                _soundPlayer.Play();
         }
         
     }

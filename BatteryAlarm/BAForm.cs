@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Media;
 using Microsoft.Win32;
 
@@ -13,13 +14,17 @@ namespace BatteryAlarm
         private const int BatteryTen = 10;
         private const int BatteryFive = 5;
 
-        private NotifyIcon _notifyIcon = null!;
-        private ContextMenuStrip _contextMenu = null!;
-        private Label _percentLabel = null!;
-        private Label _statusLabel = null!;
-        private System.Windows.Forms.Timer _timer = null!;
+        private NotifyIcon _notifyIcon;
+        private ContextMenuStrip _contextMenu;
+        private Label _percentLabel;
+        private Label _statusLabel;
+        private System.Windows.Forms.Timer _timer;
 
-       
+        
+        
+        //si peut il y avoir un null mettre un point d'interrogation
+
+
 
         /// <summary>
         /// Constructeur de BatteryAlarm
@@ -29,19 +34,36 @@ namespace BatteryAlarm
             InitializeComponent();
             ConfigureForm();
             InitializeLabels();
-            InitializeSounds();
             InitializeTrayIcon();
 
+            //Debug_fct()
+
+            Debug_fct();
+
+
+            //
+
             // Joue un son au démarrage
-            PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SoundsPath + "loading.wav")));
+            //PlaySound(new SoundPlayer(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, SoundsPath + "loading.wav")));
 
             SetAutoStart(true, "BatteryAlarm", Application.ExecutablePath);
 
             // Mise à jour initiale
             UpdateBatteryInfo();
+
+            //Mise en place du timer pour boucler les évènements
             TimerUpdate();
         }
-        
+
+        ///Debug_fct
+        /// Gère le debug, a supprimer
+
+        public void Debug_fct()
+        {
+            //marche
+            PlaySound(SoundsPaths[(int)SoundLevel.Fifty]);
+        }
+
         /// <summary>
         /// Gère l'événement autour du timer avec la remise à zéro pour la remise en marche du son
         /// </summary>
@@ -94,16 +116,19 @@ namespace BatteryAlarm
             PowerStatus status = SystemInformation.PowerStatus;
             float batteryLevel = status.BatteryLifePercent * 100;
             string powerLine = status.PowerLineStatus.ToString();
-            
+
             if (powerLine == "Online")
-                _statusLabel.Text = "En Charge";
-            else
-                _statusLabel.Text = "Sur Batterie";
-            
-            if (powerLine == "Online")
+            {
                 _statusLabel.Text = "En charge ⚡";
+                _percentLabel.Text = $"Battery at {batteryLevel:0}%";
+            }
             else
+            {
+                //fonction de son qui ne se déclenche uniquement si le pc n'est pas en charge
+                _percentLabel.Text = GetBatteryStatusSound(batteryLevel);
                 _statusLabel.Text = "Sur batterie 🔋";
+                _percentLabel.Text = $"Battery at {batteryLevel:0}%";
+            }
         }
     }
 }

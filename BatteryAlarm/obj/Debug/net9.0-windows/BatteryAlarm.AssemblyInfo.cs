@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BatteryAlarm")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20585af72cfac98036aa287285fceceaaa6f83c7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a8f652dd2d4afa0ba3428ac482301bdc061e0e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("BatteryAlarm")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BatteryAlarm")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
